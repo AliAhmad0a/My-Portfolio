@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { icon: 'fa-envelope', label: 'Email', value: 'ali.ahmad9564a@gmail.com', href: 'mailto:ali.ahmad9564a@gmail.com' },
     { icon: 'fa-phone', label: 'Phone', value: '+92 332 1695952', href: 'tel:+923321695952' },
     { icon: 'fa-whatsapp', label: 'WhatsApp', value: '+92 332 1695952', href: 'https://wa.me/923321695952', brand: true },
-    { icon: 'fa-location-dot', label: 'Location', value: 'Peshawar, Pakistan', href: '#' },
+    { icon: 'fa-location-dot', label: 'Location', value: 'Peshawar, Pakistan', href: 'javascript:void(0)' },
   ]
 
    const socialLinksData = [
@@ -311,17 +311,17 @@ document.addEventListener('DOMContentLoaded', () => {
   // ===== RENDER SERVICES =====
   const servicesGrid = document.getElementById('servicesGrid')
   const gradPairs = [
-    'rgba(59,130,246,0.08),rgba(96,165,250,0.08)',
-    'rgba(96,165,250,0.08),rgba(147,197,253,0.08)',
-    'rgba(147,197,253,0.08),rgba(59,130,246,0.08)',
-    'rgba(59,130,246,0.08),rgba(191,219,254,0.08)',
-    'rgba(191,219,254,0.08),rgba(59,130,246,0.08)',
-    'rgba(96,165,250,0.08),rgba(147,197,253,0.08)',
+    ['rgba(59,130,246,0.08)', 'rgba(96,165,250,0.08)'],
+    ['rgba(96,165,250,0.08)', 'rgba(147,197,253,0.08)'],
+    ['rgba(147,197,253,0.08)', 'rgba(59,130,246,0.08)'],
+    ['rgba(59,130,246,0.08)', 'rgba(191,219,254,0.08)'],
+    ['rgba(191,219,254,0.08)', 'rgba(59,130,246,0.08)'],
+    ['rgba(96,165,250,0.08)', 'rgba(147,197,253,0.08)'],
   ]
   servicesData.forEach((s, i) => {
     const card = document.createElement('div'); card.className = 'service-card'
-    card.style.setProperty('--grad-from', gradPairs[i].split(',')[0])
-    card.style.setProperty('--grad-to', gradPairs[i].split(',')[1])
+    card.style.setProperty('--grad-from', gradPairs[i][0])
+    card.style.setProperty('--grad-to', gradPairs[i][1])
     card.innerHTML = `
       <div class="service-icon"><i class="fa-solid ${s.icon}"></i></div>
       <h3 class="service-title">${s.title}</h3>
@@ -396,6 +396,19 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       `
       card.style.cursor = 'pointer'
+      if (window.matchMedia('(pointer: fine)').matches) {
+        card.addEventListener('mousemove', e => {
+          const rect = card.getBoundingClientRect()
+          const px = (e.clientX - rect.left) / rect.width - 0.5
+          const py = (e.clientY - rect.top) / rect.height - 0.5
+          card.style.transform = `perspective(1000px) rotateY(${px * 10}deg) rotateX(${-py * 10}deg) translateY(-6px)`
+          card.style.boxShadow = `0 20px 40px rgba(59,130,246,0.15)`
+        })
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg)'
+          card.style.boxShadow = 'none'
+        })
+      }
       card.addEventListener('click', e => {
         if (!e.target.closest('.project-links a')) {
           window.open('https://github.com/AliAhmad0a', '_blank')
@@ -526,22 +539,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
-  // ===== 3D TILT ON PROJECT CARDS =====
-  if (window.matchMedia('(pointer: fine)').matches) {
-    document.querySelectorAll('.project-card').forEach(card => {
-      card.addEventListener('mousemove', e => {
-        const rect = card.getBoundingClientRect()
-        const px = (e.clientX - rect.left) / rect.width - 0.5
-        const py = (e.clientY - rect.top) / rect.height - 0.5
-        card.style.transform = `perspective(1000px) rotateY(${px * 10}deg) rotateX(${-py * 10}deg) translateY(-6px)`
-        card.style.boxShadow = `0 20px 40px rgba(59,130,246,0.15)`
-      })
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg)'
-        card.style.boxShadow = 'none'
-      })
-    })
-  }
+
 
   // ===== MOUSE PARALLAX ON HERO IMAGE =====
   const heroWrapper = document.querySelector('.hero-image-wrapper')
