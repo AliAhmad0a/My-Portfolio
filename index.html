@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect rx='20' width='100' height='100' fill='%233B82F6'/><text x='50' y='68' font-size='50' font-weight='bold' font-family='sans-serif' text-anchor='middle' fill='white'>AA</text></svg>">
+  <title>Ali Ahmad | Software Engineer & Flutter Developer</title>
+  <meta name="description" content="Ali Ahmad - Passionate Software Engineering student and Flutter Developer building modern mobile applications, full-stack web applications, and professional UI/UX designs." />
+  <meta name="keywords" content="Ali Ahmad, Flutter Developer, Software Engineer, Web Developer, UI/UX Designer, Peshawar, Pakistan" />
+  <meta name="author" content="Ali Ahmad" />
+  <meta property="og:title" content="Ali Ahmad | Software Engineer & Flutter Developer" />
+  <meta property="og:description" content="Passionate Software Engineering student and Flutter Developer building modern mobile applications and full-stack web solutions." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+   <link rel="stylesheet" href="style.css" />
+   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body>
+
+  <!-- ===== LOADING SCREEN ===== -->
+  <div id="loading-screen" class="loading-screen">
+    <div class="loader-ring">
+      <svg width="80" height="80" viewBox="0 0 80 80">
+        <circle cx="40" cy="40" r="35" fill="none" stroke="rgba(59,130,246,0.1)" stroke-width="2"/>
+        <circle id="loader-circle" cx="40" cy="40" r="35" fill="none" stroke="url(#loaderGrad)" stroke-width="2"
+          stroke-linecap="round" stroke-dasharray="220" stroke-dashoffset="220" transform="rotate(-90 40 40)"/>
+        <defs>
+          <linearGradient id="loaderGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#3B82F6"/>
+            <stop offset="100%" stop-color="#60A5FA"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <div class="loader-text">
+        <span id="loader-percent">0</span>
+      </div>
+    </div>
+    <h2 class="loader-name">Ali Ahmad</h2>
+    <p class="loader-sub">Loading portfolio...</p>
+    <div class="loader-bar-track">
+      <div id="loader-bar" class="loader-bar-fill"></div>
+    </div>
+  </div>
+
+  <!-- ===== SCROLL PROGRESS ===== -->
+  <div id="scroll-progress" class="scroll-progress"></div>
+
+  <!-- ===== CUSTOM CURSOR ===== -->
+  <div id="cursor-dot" class="cursor-dot"></div>
+  <div id="cursor-ring" class="cursor-ring"></div>
+
+  <!-- ===== PARTICLE CANVAS ===== -->
+  <canvas id="particle-canvas" class="particle-canvas"></canvas>
+
+  <!-- ===== BLOB BG ===== -->
+  <div class="blob-container">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav id="navbar" class="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">Ali<span class="gradient-text">.</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="#hero" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+          <div class="theme-slider">
+            <div class="theme-knob">
+              <i class="fas fa-moon"></i>
+            </div>
+          </div>
+        </button>
+        <button id="menuToggle" class="menu-toggle" aria-label="Menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="mobile-menu">
+      <a href="#hero" class="mobile-link">Home</a>
+      <a href="#about" class="mobile-link">About</a>
+      <a href="#skills" class="mobile-link">Skills</a>
+      <a href="#projects" class="mobile-link">Projects</a>
+      <a href="#services" class="mobile-link">Services</a>
+      <a href="#contact" class="mobile-link">Contact</a>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section id="hero" class="section hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <p class="hero-badge">Software Engineer & Flutter Developer</p>
+          <h1 class="hero-title">Hi, I'm <span class="gradient-text">Ali Ahmad</span></h1>
+          <p class="hero-subtitle">I build <span id="typewriter" class="typewriter"></span><span class="cursor-blink">|</span></p>
+          <p class="hero-desc">Passionate about solving real-world problems through technology. Crafting clean, scalable, and impactful digital experiences.</p>
+          <div class="hero-btns">
+            <a href="cv1234.pdf" id="downloadCv" download="Ali-Ahmad-CV.pdf" class="btn btn-primary"><i class="fas fa-download"></i> Download CV</a>
+            <a href="#projects" class="btn btn-outline"><i class="fas fa-eye"></i> View Projects</a>
+            <a href="#contact" class="btn btn-outline"><i class="fas fa-envelope"></i> Contact Me</a>
+          </div>
+        </div>
+        <div class="hero-image-wrapper">
+          <div class="hero-image-border">
+            <div class="hero-image-inner">
+              <img src="images/profile.jpeg" alt="Ali Ahmad" class="hero-img" />
+            </div>
+          </div>
+          <div class="hero-mirror">
+            <div class="hero-image-border">
+              <div class="hero-image-inner">
+                <img src="images/profile.jpeg" alt="" class="hero-img mirror-img" aria-hidden="true" />
+              </div>
+            </div>
+          </div>
+          <div class="hero-float-card float-card-1">
+            <p class="float-label">Projects</p>
+            <p class="float-value">4+</p>
+          </div>
+          <div class="hero-float-icon float-icon-1">
+            <i class="fas fa-briefcase"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-mouse">
+        <div class="scroll-dot"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about" class="section about">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-badge">About Me</p>
+        <h2 class="section-title">Know Me <span class="gradient-text">Better</span></h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="about-grid">
+        <div class="about-card glass reveal-left">
+          <h3 class="about-heading">Passionate Developer & <span class="gradient-text">Problem Solver</span></h3>
+          <p>I am a passionate Software Engineering student and Flutter Developer who enjoys building modern mobile applications, full-stack web applications, and professional UI/UX designs.</p>
+          <p>I love solving real-world problems through technology and continuously learning new technologies. My goal is to become a professional Software Engineer and build scalable software solutions.</p>
+          <div class="about-info">
+            <div class="info-item">
+              <span class="info-label">Email</span>
+              <span class="info-value">ali.ahmad9564a@gmail.com</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Phone</span>
+              <span class="info-value">+92 332 1695952</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-card glass reveal-right">
+          <h3 class="about-heading"><span class="gradient-text">Education</span> Timeline</h3>
+          <div class="edu-list">
+            <div class="edu-item reveal">
+              <div class="edu-dot"></div>
+              <span class="edu-period">2023 - 2027</span>
+              <h4>Bachelor of Software Engineering</h4>
+              <p>Sarhad University of Science and IT, Peshawar</p>
+              <span class="edu-tag">6th Semester</span>
+            </div>
+            <div class="edu-item reveal">
+              <div class="edu-dot"></div>
+              <span class="edu-period">2025</span>
+              <h4>Mobile App Development (Flutter)</h4>
+              <p>PTCP Software House</p>
+            </div>
+            <div class="edu-item reveal">
+              <div class="edu-dot"></div>
+              <span class="edu-period">2026</span>
+              <h4>Web Development</h4>
+              <p>Arfa Kareem Technology Incubator</p>
+            </div>
+            <div class="edu-item reveal">
+              <div class="edu-dot"></div>
+              <span class="edu-period">2022 - 2023</span>
+              <h4>Diploma in Information Technology</h4>
+              <p>Government College of Technology</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="stats-grid reveal">
+        <div class="stat-card glass">
+          <i class="fas fa-layer-group stat-icon"></i>
+          <span class="stat-value" data-count="4" data-suffix="+">0+</span>
+          <span class="stat-label">Projects Completed</span>
+        </div>
+        <div class="stat-card glass">
+          <i class="fas fa-code stat-icon"></i>
+          <span class="stat-value" data-count="15" data-suffix="+">0+</span>
+          <span class="stat-label">Technologies</span>
+        </div>
+        <div class="stat-card glass">
+          <i class="fas fa-graduation-cap stat-icon"></i>
+          <span class="stat-value" data-count="6">0</span>
+          <span class="stat-label">Courses</span>
+        </div>
+        <div class="stat-card glass">
+          <i class="fas fa-cube stat-icon"></i>
+          <span class="stat-value">6th</span>
+          <span class="stat-label">Semester</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SKILLS ===== -->
+  <section id="skills" class="section skills">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-badge">My Skills</p>
+        <h2 class="section-title">Technical <span class="gradient-text">Expertise</span></h2>
+        <div class="section-line"></div>
+      </div>
+      <h3 class="subsection-title reveal">Core Technologies</h3>
+      <div class="circular-skills reveal">
+        <div class="circular-item">
+          <div class="circular-progress" data-percent="90">
+            <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" class="circular-bg"/><circle cx="60" cy="60" r="50" class="circular-fill" id="circ1"/></svg>
+            <div class="circular-text"><span>📱</span><span class="circular-percent">90%</span></div>
+          </div>
+          <p>Flutter</p>
+        </div>
+        <div class="circular-item">
+          <div class="circular-progress" data-percent="80">
+            <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" class="circular-bg"/><circle cx="60" cy="60" r="50" class="circular-fill" id="circ2"/></svg>
+            <div class="circular-text"><span>🔥</span><span class="circular-percent">80%</span></div>
+          </div>
+          <p>Firebase</p>
+        </div>
+        <div class="circular-item">
+          <div class="circular-progress" data-percent="70">
+            <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" class="circular-bg"/><circle cx="60" cy="60" r="50" class="circular-fill" id="circ3"/></svg>
+            <div class="circular-text"><span>💚</span><span class="circular-percent">70%</span></div>
+          </div>
+          <p>Node.js</p>
+        </div>
+        <div class="circular-item">
+          <div class="circular-progress" data-percent="75">
+            <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" class="circular-bg"/><circle cx="60" cy="60" r="50" class="circular-fill" id="circ4"/></svg>
+            <div class="circular-text"><span>⚛️</span><span class="circular-percent">75%</span></div>
+          </div>
+          <p>React</p>
+        </div>
+      </div>
+      <h3 class="subsection-title reveal">All Skills</h3>
+      <div class="skill-bars reveal" id="skillBars"></div>
+      <h3 class="subsection-title reveal">Soft Skills</h3>
+      <div class="soft-skills reveal" id="softSkills"></div>
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS ===== -->
+  <section id="projects" class="section projects">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-badge">My Work</p>
+        <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="project-filters reveal" id="projectFilters"></div>
+      <div class="project-grid" id="projectGrid"></div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section id="services" class="section services">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-badge">What I Do</p>
+        <h2 class="section-title">My <span class="gradient-text">Services</span></h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="services-grid" id="servicesGrid"></div>
+    </div>
+  </section>
+
+  <!-- ===== TIMELINE ===== -->
+  <section id="timeline" class="section timeline">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-badge">My Journey</p>
+        <h2 class="section-title">Learning <span class="gradient-text">Timeline</span></h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="timeline-container" id="timelineContainer"></div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="section contact">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-badge">Get In Touch</p>
+        <h2 class="section-title">Contact <span class="gradient-text">Me</span></h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info glass reveal-left">
+          <h3>Let's Talk</h3>
+          <p>Have a project in mind or just want to say hi? Feel free to reach out.</p>
+          <div class="contact-links" id="contactLinks"></div>
+          <div class="social-links" id="socialLinks"></div>
+        </div>
+        <div class="contact-form glass reveal-right">
+          <h3>Send a Message</h3>
+          <form id="contactForm">
+             <div class="form-row">
+               <div class="form-group">
+                 <label>Your Name</label>
+                 <input type="text" name="from_name" placeholder="John Doe" required />
+               </div>
+               <div class="form-group">
+                 <label>Your Email</label>
+                 <input type="email" name="from_email" placeholder="john@example.com" required />
+               </div>
+             </div>
+             <div class="form-group">
+               <label>Subject</label>
+               <input type="text" name="subject" placeholder="Project Collaboration" required />
+             </div>
+             <div class="form-group">
+               <label>Message</label>
+               <textarea name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
+             </div>
+             <button type="submit" class="btn btn-primary btn-full"><i class="fas fa-paper-plane"></i> Send Message</button>
+             <p id="formStatus" class="form-status"></p>
+           </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#hero" class="nav-logo">Ali<span class="gradient-text">.</span></a>
+          <p>Software Engineering student & Flutter Developer passionate about building modern applications and solving real-world problems.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <a href="#hero">Home</a>
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <p>Peshawar, Pakistan</p>
+          <a href="mailto:ali.ahmad9564a@gmail.com">ali.ahmad9564a@gmail.com</a>
+          <a href="tel:+923321695952">+92 332 1695952</a>
+        </div>
+        <div class="footer-col">
+          <h4>Follow</h4>
+          <div class="footer-social">
+             <a href="https://github.com/AliAhmad0a" target="_blank"><i class="fab fa-github"></i></a>
+             <a href="https://www.linkedin.com/in/ali-ahmad-3baa6a385" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Ali Ahmad. All rights reserved.</p>
+        <p>Designed & Built with <span class="heart">&hearts;</span> by Ali Ahmad</p>
+      </div>
+    </div>
+    <button id="backToTop" class="back-to-top"><i class="fas fa-arrow-up"></i></button>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
