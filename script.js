@@ -4,6 +4,14 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  let revealInited = false
+  function initRevealSafe() {
+    if (revealInited) return
+    revealInited = true
+    initReveal()
+  }
+
   // ===== DOWNLOAD CV =====
   const downloadCv = document.getElementById('downloadCv')
   if (downloadCv) {
@@ -124,35 +132,41 @@ document.addEventListener('DOMContentLoaded', () => {
   const loaderBar = document.getElementById('loader-bar')
   const loadingScreen = document.getElementById('loading-screen')
 
+  function finishLoading() {
+    if (!loadingScreen || loadingScreen.classList.contains('hidden')) return
+    loadingScreen.classList.add('hidden')
+    setTimeout(() => { loadingScreen.style.display = 'none' }, 800)
+    const heroEls = document.querySelectorAll('.hero-badge, .hero-title, .hero-subtitle, .hero-desc, .hero-btns, .hero-image-wrapper')
+    heroEls.forEach((el, i) => {
+      if (prefersReducedMotion) { el.style.opacity = '1'; el.style.transform = 'none'; return }
+      el.style.opacity = '0'
+      el.style.transform = 'translateY(30px)'
+      el.style.transition = `opacity 0.7s ease ${i * 0.12}s, transform 0.7s ease ${i * 0.12}s`
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          el.style.opacity = '1'
+          el.style.transform = 'translateY(0)'
+        })
+      })
+    })
+    initRevealSafe()
+  }
+
   const loadInterval = setInterval(() => {
     progress += Math.random() * 15 + 5
     if (progress >= 100) {
       progress = 100
       clearInterval(loadInterval)
-      setTimeout(() => {
-        loadingScreen.classList.add('hidden')
-        setTimeout(() => loadingScreen.style.display = 'none', 800)
-        // Staggered hero entrance
-        const heroEls = document.querySelectorAll('.hero-badge, .hero-title, .hero-subtitle, .hero-desc, .hero-btns, .hero-image-wrapper')
-        heroEls.forEach((el, i) => {
-          el.style.opacity = '0'
-          el.style.transform = 'translateY(30px)'
-          el.style.transition = `opacity 0.7s ease ${i * 0.12}s, transform 0.7s ease ${i * 0.12}s`
-          requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-              el.style.opacity = '1'
-              el.style.transform = 'translateY(0)'
-            })
-          })
-        })
-        initReveal()
-      }, 500)
+      setTimeout(finishLoading, 500)
     }
     const dash = 220 - (progress / 100) * 220
     if (loaderCircle) loaderCircle.style.strokeDashoffset = dash
     if (loaderPercent) loaderPercent.textContent = Math.min(Math.round(progress), 100)
     if (loaderBar) loaderBar.style.width = Math.min(progress, 100) + '%'
   }, 200)
+
+  // Safety fallback: never leave the user stuck on the loading screen
+  setTimeout(finishLoading, 6000)
 
   // ===== CUSTOM CURSOR =====
   const dot = document.getElementById('cursor-dot')
@@ -172,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ===== PARTICLES =====
   const canvas = document.getElementById('particle-canvas')
-  if (canvas) {
+  if (canvas && !prefersReducedMotion) {
     const ctx = canvas.getContext('2d')
     let particles = []
     function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight }
@@ -270,6 +284,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const typeEl = document.getElementById('typewriter')
   if (typeEl) {
     const words = ['Modern Mobile Apps', 'Full Stack Web Apps', 'Desktop Applications', 'Professional UI/UX', 'Scalable Solutions']
+    if (prefersReducedMotion) {
+      typeEl.textContent = words[0]
+    } else {
     let wordIndex = 0, charIndex = 0, isDeleting = false
     function typeEffect() {
       const word = words[wordIndex]
@@ -285,6 +302,7 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(typeEffect, isDeleting ? 50 : 100)
     }
     typeEffect()
+    }
   }
 
   // ===== RENDER SKILL BARS =====
@@ -396,7 +414,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       `
       card.style.cursor = 'pointer'
-      if (window.matchMedia('(pointer: fine)').matches) {
+      if (window.matchMedia('(pointer: fine)').matches && !prefersReducedMotion) {
         card.addEventListener('mousemove', e => {
           const rect = card.getBoundingClientRect()
           const px = (e.clientX - rect.left) / rect.width - 0.5
@@ -525,8 +543,8 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
   // ===== MAGNETIC BUTTONS =====
-  if (window.matchMedia('(pointer: fine)').matches) {
-    document.querySelectorAll('.btn, .nav-logo, .back-to-top').forEach(el => {
+  if (window.matchMedia('(pointer: fine)').matches && !prefersReducedMotion) {
+    document.querySelectorAll('.btn').forEach(el => {
       el.addEventListener('mousemove', e => {
         const rect = el.getBoundingClientRect()
         const x = (e.clientX - rect.left - rect.width / 2) * 0.2
@@ -543,20 +561,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ===== MOUSE PARALLAX ON HERO IMAGE =====
   const heroWrapper = document.querySelector('.hero-image-wrapper')
-  if (heroWrapper && window.matchMedia('(pointer: fine)').matches) {
+  if (heroWrapper && window.matchMedia('(pointer: fine)').matches && !prefersReducedMotion) {
     const heroSection = document.getElementById('hero')
     heroSection.addEventListener('mousemove', e => {
       const rect = heroSection.getBoundingClientRect()
       const x = (e.clientX - rect.left) / rect.width - 0.5
       const y = (e.clientY - rect.top) / rect.height - 0.5
-      heroWrapper.querySelector('.hero-image-border').style.transform = `translate(${x * 20}px, ${y * 20}px)`
-      const floatCard = heroWrapper.querySelector('.hero-float-card')
-      if (floatCard) floatCard.style.transform = `translate(${-x * 25}px, ${-y * 25}px)`
+      const border = heroWrapper.querySelector('.hero-image-border')
+      if (border) border.style.transform = `translate(${x * 20}px, ${y * 20}px)`
     })
     heroSection.addEventListener('mouseleave', () => {
-      heroWrapper.querySelector('.hero-image-border').style.transform = 'translate(0,0)'
-      const floatCard = heroWrapper.querySelector('.hero-float-card')
-      if (floatCard) floatCard.style.transform = 'translate(0,0)'
+      const border = heroWrapper.querySelector('.hero-image-border')
+      if (border) border.style.transform = 'translate(0,0)'
     })
   }
 
@@ -582,9 +598,18 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }, { threshold: 0.5 })
 
-  document.querySelectorAll('.stat-value[data-count]').forEach(el => counterObserver.observe(el))
+  document.querySelectorAll('.stat-value[data-count]').forEach(el => {
+    if (prefersReducedMotion) {
+      el.textContent = el.dataset.count + (el.dataset.suffix || '')
+    } else {
+      counterObserver.observe(el)
+    }
+  })
 
   // ===== SPLIT-TEXT HEADING REVEAL =====
+  if (prefersReducedMotion) {
+    document.querySelectorAll('.section-title').forEach(t => { t.style.opacity = '1' })
+  }
   const splitObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -599,6 +624,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }, { threshold: 0.3 })
 
+  if (!prefersReducedMotion) {
   document.querySelectorAll('.section-title').forEach(title => {
     // Collect child nodes (text nodes + elements like gradient-text spans)
     const childNodes = Array.from(title.childNodes)
@@ -647,6 +673,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     splitObserver.observe(title)
   })
+  }
 
   // ===== SKILL ICON FLOATING =====
   const iconContainer = document.querySelector('.skill-bars')
