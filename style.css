@@ -113,7 +113,7 @@ img { max-width: 100%; display: block; }
 .section-badge {
   display: block;
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 1.8rem;
   font-weight: 600;
   background: linear-gradient(135deg, var(--primary), var(--accent));
   -webkit-background-clip: text;
@@ -127,7 +127,7 @@ img { max-width: 100%; display: block; }
   display: block;
   text-align: center;
   font-family: 'Poppins', sans-serif;
-  font-size: 2.5rem;
+  font-size: 5rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -136,8 +136,8 @@ img { max-width: 100%; display: block; }
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-@media (min-width: 768px) { .section-title { font-size: 2.5rem; } }
-@media (min-width: 1024px) { .section-title { font-size: 3rem; } }
+@media (min-width: 768px) { .section-title { font-size: 5rem; } }
+@media (min-width: 1024px) { .section-title { font-size: 6rem; } }
 .section-line {
   display: block;
   width: 5rem; height: 4px; margin: 1rem auto 0;
@@ -148,7 +148,7 @@ img { max-width: 100%; display: block; }
 .subsection-title {
   display: block;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 2.4rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -355,15 +355,15 @@ img { max-width: 100%; display: block; }
 }
 .hero-title {
   font-family: 'Poppins', sans-serif;
-  font-size: 2.5rem; font-weight: 700; color: var(--text);
+  font-size: 5rem; font-weight: 700; color: var(--text);
   margin-bottom: 1.5rem; line-height: 1.2;
 }
-@media (min-width: 768px) { .hero-title { font-size: 3.5rem; } }
-@media (min-width: 1024px) { .hero-title { font-size: 4.5rem; } }
+@media (min-width: 768px) { .hero-title { font-size: 7rem; } }
+@media (min-width: 1024px) { .hero-title { font-size: 9rem; } }
 .hero-subtitle {
-  font-size: 1.125rem; color: var(--text-muted); margin-bottom: 1rem;
+  font-size: 2.25rem; color: var(--text-muted); margin-bottom: 1rem;
 }
-@media (min-width: 768px) { .hero-subtitle { font-size: 1.25rem; } }
+@media (min-width: 768px) { .hero-subtitle { font-size: 2.5rem; } }
 .hero-desc {
   color: var(--text-muted); font-size: 0.9rem; max-width: 32rem;
   line-height: 1.7; margin: 0 auto 2rem;
@@ -462,7 +462,7 @@ img { max-width: 100%; display: block; }
 @media (min-width: 1024px) { .about-grid { grid-template-columns: 1fr 1fr; } }
 .about-card { padding: 1.5rem; text-align: left; }
 @media (min-width: 768px) { .about-card { padding: 2rem; } }
-.about-heading { font-size: 1.25rem; font-weight: 700; font-family: 'Poppins', sans-serif; color: var(--text); margin-bottom: 1rem; }
+.about-heading { font-size: 3.5rem; font-weight: 700; font-family: 'Poppins', sans-serif; color: var(--text); margin-bottom: 1rem; }
 .about-card p { color: var(--text-muted); font-size: 0.875rem; line-height: 1.7; margin-bottom: 1rem; }
 .about-info { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
 .info-item {
@@ -590,7 +590,7 @@ img { max-width: 100%; display: block; }
 }
 .project-body { padding: 1.25rem; }
 @media (min-width: 640px) { .project-body { padding: 1.5rem; } }
-.project-title { font-size: 1.125rem; font-weight: 700; font-family: 'Poppins', sans-serif; color: var(--text); margin-bottom: 0.5rem; }
+.project-title { font-size: 2.5rem; font-weight: 700; font-family: 'Poppins', sans-serif; color: var(--text); margin-bottom: 0.5rem; }
 .project-card:hover .project-title { background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .project-desc { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.6; }
 .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
@@ -627,7 +627,7 @@ img { max-width: 100%; display: block; }
   position: relative; transition: transform 0.3s;
 }
 .service-card:hover .service-icon { transform: scale(1.1); }
-.service-title { font-size: 1.125rem; font-weight: 700; font-family: 'Poppins', sans-serif; color: var(--text); margin-bottom: 0.75rem; position: relative; }
+.service-title { font-size: 2.5rem; font-weight: 700; font-family: 'Poppins', sans-serif; color: var(--text); margin-bottom: 0.75rem; position: relative; }
 .service-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; position: relative; }
 
 /* ============================================
@@ -734,7 +734,7 @@ img { max-width: 100%; display: block; }
 @media (min-width: 640px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1024px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; } }
 .footer-brand p { font-size: 0.875rem; color: var(--text-muted); margin-top: 1rem; line-height: 1.6; text-align: left; }
-.footer-col h4 { font-size: 1.125rem; font-weight: 700; color: var(--text); margin-bottom: 1.25rem; font-family: 'Poppins', sans-serif; }
+/* removed duplicate .subsection-title */
 .footer-col a, .footer-col p { display: block; font-size: 0.875rem; color: var(--text-muted); margin-bottom: 0.75rem; transition: color var(--transition); text-align: left; }
 .footer-col a:hover { color: var(--accent); }
 .footer-social { display: flex; gap: 1rem; }
@@ -944,14 +944,14 @@ img { max-width: 100%; display: block; }
    RESPONSIVE
    ============================================ */
 @media (max-width: 639px) {
-  .hero-title { font-size: 2rem; }
+  .hero-title { font-size: 4rem; }
   .hero-image-border { width: 200px; height: 200px; }
   .hero-mirror { width: 200px; height: 70px; }
   .hero-mirror .hero-image-border { width: 200px; height: 200px; transform: translateY(-130px); }
   .hero-float-card { right: 0; bottom: 0; padding: 0.5rem 1rem; }
   .hero-float-card .float-value { font-size: 1.1rem; }
   .hero-float-icon { width: 3rem; height: 3rem; font-size: 1rem; top: -0.5rem; left: -0.5rem; }
-  .section-title { font-size: 1.75rem; }
+  .section-title { font-size: 3.5rem; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
   .stat-value { font-size: 1.5rem; }
   .contact-info, .contact-form { padding: 1.25rem; }
