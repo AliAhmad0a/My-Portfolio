@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const timelineData = [
     { year: '2023 - 2027', title: 'Bachelor of Software Engineering', inst: 'Sarhad University of Science and IT', desc: 'Pursuing a degree in Software Engineering with focus on modern software development practices.' },
     { year: '2025', title: 'Mobile App Development (Flutter)', inst: 'PTCP Software House', desc: 'Completed professional training in Flutter, Dart, Firebase, REST APIs, State Management, and App Deployment.' },
-    { year: '2026', title: 'Web Development', inst: 'Arfa Kareem Technology Incubator', desc: 'Learned HTML, CSS, JavaScript, Responsive Design, Frontend Development, and Backend Basics.' },
+    { year: '2026', title: 'Web Development', inst: 'Arfa Karim Technology Incubator', desc: 'Learned HTML, CSS, JavaScript, Responsive Design, Frontend Development, and Backend Basics.' },
     { year: '2022 - 2023', title: 'Diploma in Information Technology', inst: 'Government College of Technology', desc: 'Completed a comprehensive diploma covering various aspects of information technology.' },
   ]
 
@@ -269,15 +269,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.nav-link').forEach(l => {
       l.classList.toggle('active', l.getAttribute('href') === '#' + current)
     })
-  })
-
-  // ===== THEME TOGGLE =====
-  const themeToggle = document.getElementById('themeToggle')
-  const themeKnob = themeToggle.querySelector('.theme-knob i')
-  themeToggle.addEventListener('click', () => {
-    document.documentElement.classList.toggle('light')
-    const isLight = document.documentElement.classList.contains('light')
-    themeKnob.className = isLight ? 'fas fa-sun' : 'fas fa-moon'
   })
 
   // ===== TYPEWRITER =====
